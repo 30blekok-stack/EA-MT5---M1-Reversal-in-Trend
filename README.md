@@ -13,6 +13,13 @@ grid/averaging/martingale.
 > ⚠️ Uji dulu di **DEMO / forward test** sebelum akun riil. Hasil backtest
 > bukan jaminan performa live.
 
+> 🎯 **Setting optimal siap-pakai** (Exness XAUUSDm / gold 3-digit):
+> preset [`presets/XAUUSDm_Exness_3digit_optimal.set`](presets/XAUUSDm_Exness_3digit_optimal.set)
+> — tinggal **Load** di tab Inputs. Penjelasan lengkap tiap nilai & cara adaptasi
+> di [`docs/TUTORIAL_SETTING_OPTIMAL.md`](docs/TUTORIAL_SETTING_OPTIMAL.md).
+> **Catatan:** dengan default bawaan, EA tidak akan entry di broker spread-lebar
+> (spread gold Exness ~240 points > `InpMaxSpreadPoints` default 50) — pakai preset ini.
+
 ---
 
 ## 1. Cara Pasang

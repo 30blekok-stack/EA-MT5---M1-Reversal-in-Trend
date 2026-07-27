@@ -1,0 +1,89 @@
+; ==================================================================
+; Preset OPTIMAL - XAUUSD_ReversalTrend_M1
+; Broker  : Exness (contoh: XAUUSDm) -- simbol 3-digit, Point = 0.001
+; Cek     : harga gold tampil 3 desimal (mis. 4103.201) -> 3-digit
+; Pakai   : tab Inputs -> tombol "Load" -> pilih file ini
+; Verifikasi nilainya dengan docs/TUTORIAL_SETTING_OPTIMAL.md
+; Semua nilai berbasis "points" sudah diskalakan 10x dari default 2-digit.
+; ==================================================================
+; --- Filter Tren ---
+InpTrendTimeframe=15
+InpTrendEMAPeriod=50
+InpUseSlopeFilter=true
+InpSlopeLookback=5
+InpMinSlopePoints=100.0
+InpUseADXFilter=true
+InpADXTimeframe=15
+InpADXPeriod=14
+InpADXMinLevel=22.0
+; --- Sinyal Oscillator ---
+InpOscMode=0
+InpRSIPeriod=14
+InpRSIBuyLevel=40.0
+InpRSISellLevel=60.0
+InpStochK=5
+InpStochD=3
+InpStochSlowing=3
+InpStochBuyLevel=30.0
+InpStochSellLevel=70.0
+InpSignalValidBars=3
+InpSameBarOnly=false
+; --- Candle Konfirmasi ---
+InpMinWickRatio=0.30
+InpMinClosePosition=0.50
+InpMinRangeATRRatio=0.40
+; --- Stop Loss ---
+InpSLMode=0
+InpSLBufferPoints=150
+InpSwingLookback=10
+InpATRPeriod=14
+InpATRMultSL=1.5
+InpMinSLPoints=800
+InpMaxSLPoints=4000
+; --- Breakeven ---
+InpUseBreakeven=true
+InpBreakevenTriggerPoints=800
+InpBreakevenBufferPoints=300
+InpCommissionPoints=0
+; --- Trailing ---
+InpUseTrailing=true
+InpTrailMode=0
+InpATRMultTrail=1.5
+InpTrailDistancePoints=1500
+InpTrailStepPoints=300
+InpTrailEMAPeriod=20
+InpMinModifyStepPoints=50
+; --- Take Profit / Manajemen ---
+InpTPMode=0
+InpRR=1.5
+InpTPPoints=3000
+InpUsePartial=false
+InpPartialPercent=50.0
+InpPartialAtPoints=1500
+InpUseTimeExit=false
+InpMaxBarsInTrade=30
+; --- Lot / Risk ---
+InpLotMode=0
+InpFixedLot=0.01
+InpRiskPercent=0.5
+; --- Filter Pasar ---
+InpMaxSpreadPoints=300
+InpUseSession=false
+InpSessionStartHour=8
+InpSessionEndHour=22
+InpUseATRFilter=false
+InpATRMinPoints=150
+InpATRMaxPoints=3000
+InpUseNewsFilter=false
+InpNewsMinutesBefore=15
+InpNewsMinutesAfter=15
+InpNewsHighImpactOnly=true
+; --- Proteksi Akun ---
+InpMaxDailyLossPercent=4.0
+InpMaxTradesPerDay=15
+InpMaxOpenPositions=1
+InpDailyProfitTargetPercent=0.0
+; --- Umum ---
+InpMagicNumber=20250722
+InpMaxSlippagePoints=200
+InpVerboseLog=true
