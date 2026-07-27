@@ -223,3 +223,67 @@ Spread ~240 points (0.24) itu **lebar** untuk scalping M1 dan menggerus profit.
 
 > Preset ini titik-awal yang solid, **bukan jaminan profit**. Selalu validasi di
 > demo/forward test dan sesuaikan dengan kondisi broker Anda.
+
+---
+
+## 9. Mode SUPER-FAST SCALP (frekuensi entry maksimal)
+
+> Preset: [`presets/XAUUSDm_super_scalp_fast.set`](../presets/XAUUSDm_super_scalp_fast.set)
+
+Kalau **belum ada posisi terbuka sama sekali**, penyebab paling umum:
+
+1. **Gate tren terlalu ketat.** Preset optimal butuh `slope ≥ 100` **dan**
+   `ADX ≥ 22` di M15. Saat market sepi (malam / off-session), dua syarat ini
+   nyaris tak pernah terpenuhi → **arah tren tidak valid → EA tidak entry.**
+2. **Spread melebihi batas.** Kalau spread melonjak di atas `InpMaxSpreadPoints`,
+   semua entry ditolak. Cek tab **Journal** (log `[TOLAK] spread=...`).
+3. **Off-session.** Gold sepi di luar jam London–New York → sedikit sinyal.
+
+### Apa yang diubah di mode super-fast
+| Bagian | Optimal | Super-Fast | Efek |
+|---|---|---|---|
+| TF tren / EMA | M15 / 50 | **M5 / 20** | Gate lebih responsif, arah lebih sering valid. |
+| Filter slope | true (100) | **false** | Arah cukup dari harga vs EMA → hampir selalu ada arah. |
+| Filter ADX | true (22) | **false** | Tak menunggu tren kuat. |
+| Periode RSI | 14 | **7** | RSI lebih cepat → lebih sering cross. |
+| Level RSI BUY/SELL | 40 / 60 | **45 / 55** | Dekat mid → cross sangat sering. |
+| Masa berlaku sinyal | 3 | **5** | Lebih banyak peluang konfirmasi. |
+| Wick / close / range | 0.30 / 0.50 / 0.40 | **0.10 / 0.35 / 0.0** | Hampir semua candle searah lolos. |
+| Jarak SL min | 800 | **500** | SL rapat. |
+| BE trigger | 800 | **400** | Kunci profit cepat. |
+| Trailing ATR | 1.5 | **1.0** | Trailing ketat. |
+| Mode TP | None | **Points 700** | Target kecil, tutup cepat. |
+| Time exit | off | **on, 10 bar** | Trade tak berlama-lama (turnover cepat). |
+| Spread maksimal | 300 | **400** | Lebih permisif (lihat peringatan). |
+| Maks trade/hari | 15 | **100** | Izinkan banyak entry. |
+
+### Cara pakai
+1. Tab Inputs → **Load** → `XAUUSDm_super_scalp_fast.set` → **OK**.
+2. **Tes saat sesi ramai** (London/NY) — di jam sepi tetap sedikit sinyal.
+3. Lihat **Journal**: kalau masih nol, cari `[TOLAK] ...` untuk tahu filter mana
+   yang menolak, lalu longgarkan yang itu.
+
+### ⚠️ Kejujuran soal spread (WAJIB dibaca)
+Spread XAUUSDm Anda **~240 points (0.24)**. Untuk scalping super cepat, tiap trade
+sudah "minus 240 points" sejak dibuka. Dengan TP 700 points, **profit bersih ~460
+points** kalau kena TP — dan spread bisa "memakan" sebagian besar target. Artinya:
+
+- Preset ini **akan sering membuka posisi** (sesuai permintaan), **tapi**
+  profitabilitas fast-scalp di spread selebar ini **berat**.
+- **Solusi nyata untuk fast-scalp**: pakai akun **Exness Raw / Zero** (spread
+  gold sering hanya 10–30 points + komisi kecil). Di akun itu, ubah:
+  - `InpMaxSpreadPoints` → **60–120**
+  - `InpCommissionPoints` → sesuai komisi round-turn (mis. 60–90)
+  - `InpMinSLPoints` → **250–400**, `InpTPPoints` → **250–400**,
+    `InpBreakevenTriggerPoints` → **200–300**
+  - Barulah "scalping super cepat" jadi masuk akal secara biaya.
+
+### Tuning cepat langsung di terminal (tanpa Load file)
+Kalau mau langsung coba, ubah 5 input ini saja dari preset optimal:
+- `Aktifkan filter kemiringan EMA` → **false**
+- `Aktifkan filter ADX` → **false**
+- `Level oversold RSI (BUY)` → **45**, `Level overbought RSI (SELL)` → **55**
+- `Rasio minimal rejection wick` → **0.10**
+- `Range minimal = rasio × ATR` → **0.0**
+
+Lima perubahan ini biasanya sudah cukup memicu entry pertama.

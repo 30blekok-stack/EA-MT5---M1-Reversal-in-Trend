@@ -1,0 +1,91 @@
+; ==================================================================
+; Preset SUPER-FAST SCALP - XAUUSD_ReversalTrend_M1
+; Broker  : Exness XAUUSDm (3-digit, Point = 0.001)
+; Tujuan  : FREKUENSI ENTRY MAKSIMAL untuk scalping cepat.
+;           Gate tren dilonggarkan (slope & ADX OFF), RSI cepat (period 7),
+;           konfirmasi candle longgar, TP kecil, time-exit 10 bar.
+; PERINGATAN: spread lebar (~240 pts) menggerus profit fast-scalp.
+;             Untuk hasil serius pakai akun Raw/Zero (spread tipis) lalu
+;             kecilkan TP/SL. Lihat docs/TUTORIAL_SETTING_OPTIMAL.md bagian 9.
+; ==================================================================
+; --- Filter Tren (dilonggarkan: hanya harga vs EMA) ---
+InpTrendTimeframe=5
+InpTrendEMAPeriod=20
+InpUseSlopeFilter=false
+InpSlopeLookback=5
+InpMinSlopePoints=0.0
+InpUseADXFilter=false
+InpADXTimeframe=5
+InpADXPeriod=14
+InpADXMinLevel=20.0
+; --- Sinyal Oscillator (RSI cepat, level dekat mid = sering cross) ---
+InpOscMode=0
+InpRSIPeriod=7
+InpRSIBuyLevel=45.0
+InpRSISellLevel=55.0
+InpStochK=5
+InpStochD=3
+InpStochSlowing=3
+InpStochBuyLevel=40.0
+InpStochSellLevel=60.0
+InpSignalValidBars=5
+InpSameBarOnly=false
+; --- Candle Konfirmasi (sangat longgar) ---
+InpMinWickRatio=0.10
+InpMinClosePosition=0.35
+InpMinRangeATRRatio=0.0
+; --- Stop Loss (rapat) ---
+InpSLMode=0
+InpSLBufferPoints=100
+InpSwingLookback=8
+InpATRPeriod=14
+InpATRMultSL=1.2
+InpMinSLPoints=500
+InpMaxSLPoints=2500
+; --- Breakeven (cepat) ---
+InpUseBreakeven=true
+InpBreakevenTriggerPoints=400
+InpBreakevenBufferPoints=300
+InpCommissionPoints=0
+; --- Trailing (ketat) ---
+InpUseTrailing=true
+InpTrailMode=0
+InpATRMultTrail=1.0
+InpTrailDistancePoints=800
+InpTrailStepPoints=150
+InpTrailEMAPeriod=20
+InpMinModifyStepPoints=30
+; --- Take Profit / Manajemen (TP kecil + time exit cepat) ---
+InpTPMode=2
+InpRR=1.2
+InpTPPoints=700
+InpUsePartial=false
+InpPartialPercent=50.0
+InpPartialAtPoints=800
+InpUseTimeExit=true
+InpMaxBarsInTrade=10
+; --- Lot / Risk ---
+InpLotMode=0
+InpFixedLot=0.01
+InpRiskPercent=0.5
+; --- Filter Pasar (permisif) ---
+InpMaxSpreadPoints=400
+InpUseSession=false
+InpSessionStartHour=8
+InpSessionEndHour=22
+InpUseATRFilter=false
+InpATRMinPoints=100
+InpATRMaxPoints=4000
+InpUseNewsFilter=false
+InpNewsMinutesBefore=10
+InpNewsMinutesAfter=10
+InpNewsHighImpactOnly=true
+; --- Proteksi Akun (izinkan banyak trade) ---
+InpMaxDailyLossPercent=5.0
+InpMaxTradesPerDay=100
+InpMaxOpenPositions=1
+InpDailyProfitTargetPercent=0.0
+; --- Umum ---
+InpMagicNumber=20250722
+InpMaxSlippagePoints=300
+InpVerboseLog=true
